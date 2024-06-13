@@ -63,11 +63,11 @@
         }
 
         .userMessage {
-            color: #0f0;
+            color: rgb(255, 255, 255);
         }
 
         .botMessage {
-            color: #ff0;
+            color: rgb(76, 255, 5);
         }
 
         #messageInput {
@@ -154,11 +154,11 @@
 <script>
     var conversationHistory = [];
 
-    var apiKey = prompt("Please enter your API key:", "");
+    
     var userName = prompt("Please enter your name:", "");
 
-    if (!apiKey || !userName) {
-        alert("API key and name are required to use the chatroom.");
+    if ( !userName) {
+        alert("Name are required to use the chatroom.");
         // Optionally, redirect or disable form
     } else {
         document.getElementById('messageForm').addEventListener('submit', function (event) {
@@ -169,7 +169,7 @@
             addToConversationHistory('user', message);
             displayMessage(message, 'user');
             inputElement.disabled = true;
-            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + apiKey, {
+            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' , {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -265,24 +265,32 @@
         if (sceneMatch && sceneMatch[1]) {
             let scene = sceneMatch[1];
             console.log(scene);
-            // 檢查scene是否包含"宿舍"
+            // 檢查scene是否包含"客棧"
             if (scene.includes("客棧")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/客棧.jpg)";
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/客棧.jpg')";
             } else if (scene.includes("水靈")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/水靈.jpg)";
-            } else if (scene.includes("金靈")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/金靈.jpg)";
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/水靈.jpg')";
             } else if (scene.includes("火靈")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage ="url('./img/火靈.jpg)" ;
-            } else if (scene.includes("木靈")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/木靈.jpg)";
-            } else if (scene.includes("土靈")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage ="url('./img/土靈.jpg)";
-            } else if (scene.includes("書院")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage ="url('./img/書院.jpg)";
-            }  else if (scene.includes("北海大戰")) {
-                document.getElementById('backgroundWrapper').style.backgroundImage ="url('./img/北海大戰.jpg)";
-             
+                document.getElementById('backgroundWrapper').style.backgroundImage = "ur;('./img/火靈.jpg')";
+            }
+            else if (scene.includes("金靈")) {
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/金靈.jpg')";
+            }
+            else if (scene.includes("土靈")) {
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/土靈.jpg')";
+            }
+            else if (scene.includes("木靈")) {
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/木靈.jpg')";
+            }
+            else if (scene.includes("北海大戰")) {
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/北海大戰.jpg')";
+            }
+            else if (scene.includes("書院")) {
+                document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/書院.jpg')";
+            }
+            
+        }
+    }
 
     function formatText(text) {
         // Replace ** with a new line and bold tag
@@ -302,7 +310,7 @@
 
     document.getElementById('startButton').addEventListener('click', function () {
         // Change background image and display settings when starting the game
-        document.getElementById('backgroundWrapper').style.backgroundImage = "img/北海大戰.jpg";
+        document.getElementById('backgroundWrapper').style.backgroundImage = "url('./img/北海大戰.jpg)";
         document.getElementById('introBlock').style.display = 'none'; // Show the game container
         document.getElementById('gameContainer').style.display = 'inline';
         document.getElementById('introButton').style.display = 'none'; // Hide the start button
@@ -310,7 +318,7 @@
         conversationHistory.push({
             "role": 'user',
             "parts": [{
-                "text":  `腳本：
+                "text": `腳本：
                         """
                         遊戲標題：水墨風雲
                         遊戲背景
@@ -504,10 +512,9 @@
                         <選擇>：在每一次的對話中，你都會根據腳本給我可以選擇的動作，根據我選擇的動作繼續接下來的劇情，整體劇情會圍繞腳本發展。
 
                         根據我的選擇進行故事就好，不要幫我做出選擇`
-
             }]
         })
-        fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + apiKey, {
+        fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' , {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -549,4 +556,4 @@
 
 </script>
 
-</html>}
+</html>
